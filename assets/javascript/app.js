@@ -14,12 +14,12 @@ $(document).ready(function () {
         },
         {
             question: "How old am I?",
-            choices:["23", "25", "32", "50"],
+            choices: ["23", "25", "32", "50"],
             answer: 1
         },
         {
             question: "Whos my wife?",
-            choices:["heber", "katie", "ger", "Stan"],
+            choices: ["heber", "katie", "ger", "Stan"],
             answer: 1
         }
     ];
@@ -48,7 +48,9 @@ $(document).ready(function () {
     var answers_correct_text_div = $("#answersCorrectText");
     var correct_counter_div = $("#correctCounter");
     var answers_incorrect_text_div = $("#answersIncorrectText")
-    var incorrect_counter_div = $("#incorrectCounter");    
+    var incorrect_counter_div = $("#incorrectCounter");
+    var unanswered_text_div = $("#unansweredText");
+    var unanswered_counter_div = $("#unansweredCounter");
 
     // Creating HTML elements___________________________________________________
     var start_button = $("<button id='start'>Start</buton>");
@@ -88,7 +90,7 @@ $(document).ready(function () {
     }
 
     // Clears all the wrong answers and only shows the correct answer___________ 
-    function showCorrectAnswer(right_answer){
+    function showCorrectAnswer(right_answer) {
         switch (right_answer) {
             case 0:
                 correct_answer_div.html(random_question.choices[0]);
@@ -124,6 +126,15 @@ $(document).ready(function () {
         }
     }
 
+    // Shows scoreboard after a certain amount of questions are asked __________
+    function showScoreBoard() {
+        clearContentSection();
+        answers_correct_text_div.html("Correct Answers: ");
+        correct_counter_div.html(correct_answers);
+        answers_incorrect_text_div.html("Incorrect Answers: ")
+        incorrect_counter_div.html(incorrect_answers)
+    }
+
     // Clears the content on the screen_________________________________________
     function clearContentSection() {
         timer_div.html("");
@@ -141,6 +152,8 @@ $(document).ready(function () {
         correct_counter_div.html("");
         answers_incorrect_text_div.html("");
         incorrect_counter_div.html("");
+        unanswered_text_div.html("");
+        unanswered_counter_div.html("");
     }
 
     //====================================================================================================================
@@ -152,11 +165,38 @@ $(document).ready(function () {
         start_button_div.html("");
         renderQuestion();
 
-        
+
         $(answers_div).on("click", ".questionChoice", function () {
             selected_choice = $(this);
 
-            if (questions_asked >== 2) {
+            questions_asked++;
+
+            if (parseInt(selected_choice.attr("id")) === random_question.answer) {
+                correct_answers++;
+                winScreen();
+
+            } else {
+                incorrect_answers++;
+                loseScreen();
+            }
+
+            if (questions_asked === 2) {
+                setTimeout(showScoreBoard, 3000);
+                
+            }else{
+                setTimeout(renderQuestion, 3000);
+            }
+        });
+    });
+
+    $(reset_div).on("click", function () {
+        location.reload();
+    });
+});
+
+
+/*
+if (questions_asked >== 2) {
                 questions_asked++;
                 if (parseInt(selected_choice.attr("id")) === random_question.answer) {
                     correct_answers++;
@@ -177,10 +217,4 @@ $(document).ready(function () {
                 correct_counter_div.html(correct_answers);
                 incorrect_counter_div.html(incorrect_answers)
             }
-        });
-    });
-
-    $(reset_div).on("click", function() {
-        location.reload();
-    });
-});
+*/
