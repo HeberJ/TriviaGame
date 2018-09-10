@@ -51,6 +51,7 @@ $(document).ready(function () {
     var incorrect_counter_div = $("#incorrectCounter");
     var unanswered_text_div = $("#unansweredText");
     var unanswered_counter_div = $("#unansweredCounter");
+    var start_over_text_div = $("#startOverText");
 
     // Creating HTML elements___________________________________________________
     var start_button = $("<button id='start'>Start</buton>");
@@ -129,10 +130,12 @@ $(document).ready(function () {
     // Shows scoreboard after a certain amount of questions are asked __________
     function showScoreBoard() {
         clearContentSection();
+        question_div.html("Finished! This is how you did!");
         answers_correct_text_div.html("Correct Answers: ");
         correct_counter_div.html(correct_answers);
         answers_incorrect_text_div.html("Incorrect Answers: ")
         incorrect_counter_div.html(incorrect_answers)
+        start_over_text_div.html("Would you like Play again?")
     }
 
     // Clears the content on the screen_________________________________________
@@ -154,7 +157,9 @@ $(document).ready(function () {
         incorrect_counter_div.html("");
         unanswered_text_div.html("");
         unanswered_counter_div.html("");
+        start_over_text_div.html("");
     }
+
 
     //====================================================================================================================
     //  Main
@@ -163,34 +168,40 @@ $(document).ready(function () {
 
     $(start_button_div).on("click", "#start", function () {
         start_button_div.html("");
+        clearContentSection();
         renderQuestion();
+    });
 
+    $(answers_div).on("click", ".questionChoice", function () {
+        selected_choice = $(this);
 
-        $(answers_div).on("click", ".questionChoice", function () {
-            selected_choice = $(this);
+        questions_asked++;
+        console.log(questions_asked + "***************************");
+        if (parseInt(selected_choice.attr("id")) === random_question.answer) {
+            correct_answers++;
+            winScreen();
 
-            questions_asked++;
+        } else {
+            incorrect_answers++;
+            loseScreen();
+        }
 
-            if (parseInt(selected_choice.attr("id")) === random_question.answer) {
-                correct_answers++;
-                winScreen();
-
-            } else {
-                incorrect_answers++;
-                loseScreen();
-            }
-
-            if (questions_asked === 2) {
-                setTimeout(showScoreBoard, 3000);
-                
-            }else{
-                setTimeout(renderQuestion, 3000);
-            }
-        });
+        if (questions_asked === 2) {
+            setTimeout(showScoreBoard, 3000);
+            
+        }else{
+            setTimeout(renderQuestion, 3000);
+        }
     });
 
     $(reset_div).on("click", function () {
         location.reload();
+    });
+
+    $(start_over_text_div).on("click", function() {
+        clearContentSection();
+        renderQuestion();
+        questions_asked = 0;
     });
 });
 
