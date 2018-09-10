@@ -1,0 +1,24 @@
+
+
+/* ************************** Heading Style ************************** */
+#resetDiv {
+  justify-content: flex-end;
+}
+
+#reset {
+  margin: 25px;
+}
+
+#headingDiv {
+  justify-content: center;
+}
+
+
+/* ************************** Content Section Style ************************** */
+
+/* Start Button */
+#startDiv {
+  justify-content: center;
+}
+
+/* Timer */
