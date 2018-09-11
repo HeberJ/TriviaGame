@@ -27,9 +27,16 @@ $(document).ready(function () {
     var random_question;
     // Players answer choice
     var selected_choice;
+    // number of questios answered correctly
     var correct_answers = 0;
+    // number of questions answered incorrectly
     var incorrect_answers = 0;
+    // number of questions unanswered
+    var unanswered_questions = 0;
+    // tracks how many questions have been asked
     var questions_asked = 0;
+    // variable for the counter
+    var countInterval;
 
     // HTML divs________________________________________________________________
     var reset_div = $("#reset");
@@ -52,31 +59,66 @@ $(document).ready(function () {
     var unanswered_text_div = $("#unansweredText");
     var unanswered_counter_div = $("#unansweredCounter");
     var start_over_text_div = $("#startOverText");
-
+    
     // Creating HTML elements___________________________________________________
     var start_button = $("<button id='start'>Start</buton>");
     var question_element = $("<h3 id='question'>");
+    
+    //====================================================================================================================
+    // Timer
+    //====================================================================================================================
+    // Sets the time in seconds
+    var time = 3
+    //starts the timer
+    var start = function () {
+        countInterval = setInterval(count, 1000);
+    }
+    //stops the timer
+    var stop = function () {
+        clearInterval(countInterval);
+    }
+    //Negates 1 from the time every time it is called
+    var count = function () {
+        time--;
+        console.log(time);
+        if (time <= 0) {
+            stop();
+            unanswered_questions++
+            didntAnswer();
+        }
+    } 
+
 
     //====================================================================================================================
     //  Functions
     //====================================================================================================================
     // Displays the trivia question and answer choices__________________________
     function renderQuestion() {
+        console.log(unanswered_questions + "NOT Answered");
+        time = 3;
+        start();
+        
+
         //clearing the divs for when they have text in them
         congrats_display_div.html("");
         correct_answer_div.html("");
 
         //selects random question from the array
         random_question = question_array[Math.floor(Math.random() * question_array.length)];
+        if (questions_asked < 2) {
+            question_div.html(question_element.text(random_question.question));
+            q0_div.html(random_question.choices[0]);
+            q1_div.html(random_question.choices[1]);
+            q2_div.html(random_question.choices[2]);
+            q3_div.html(random_question.choices[3]);
 
-        //Displays the actual question to the html with the possible answers
-        question_div.html(question_element.text(random_question.question));
-        q0_div.html(random_question.choices[0]);
-        q1_div.html(random_question.choices[1]);
-        q2_div.html(random_question.choices[2]);
-        q3_div.html(random_question.choices[3]);
+        }else{
+            showScoreBoard();
+        }
+        // tracking how many questions have been asked
+        questions_asked++;
+    
     }
-
 
     // Renders this screen if player answers the question correctly_____________
     function winScreen() {
@@ -88,6 +130,12 @@ $(document).ready(function () {
     function loseScreen() {
         showCorrectAnswer(random_question.answer);
         congrats_display_div.html("<h3>Sorry, That was the incorrect Answer</h3>");
+    }
+
+    // Renders when a player doesnt answer a question___________________________
+    function didntAnswer() {
+        clearContentSection();
+        setTimeout(renderQuestion, 2000);
     }
 
     // Clears all the wrong answers and only shows the correct answer___________ 
@@ -129,6 +177,7 @@ $(document).ready(function () {
 
     // Shows scoreboard after a certain amount of questions are asked __________
     function showScoreBoard() {
+        stop();
         clearContentSection();
         question_div.html("Finished! This is how you did!");
         answers_correct_text_div.html("Correct Answers: ");
@@ -160,7 +209,6 @@ $(document).ready(function () {
         start_over_text_div.html("");
     }
 
-
     //====================================================================================================================
     //  Main
     //====================================================================================================================
@@ -172,11 +220,10 @@ $(document).ready(function () {
         renderQuestion();
     });
 
+    //
     $(answers_div).on("click", ".questionChoice", function () {
         selected_choice = $(this);
 
-        questions_asked++;
-        console.log(questions_asked + "***************************");
         if (parseInt(selected_choice.attr("id")) === random_question.answer) {
             correct_answers++;
             winScreen();
@@ -186,46 +233,43 @@ $(document).ready(function () {
             loseScreen();
         }
 
-        if (questions_asked === 2) {
-            setTimeout(showScoreBoard, 3000);
-            
-        }else{
-            setTimeout(renderQuestion, 3000);
-        }
+        setTimeout(renderQuestion, 3000);
     });
 
+    //
     $(reset_div).on("click", function () {
         location.reload();
     });
 
+    //
     $(start_over_text_div).on("click", function() {
+        questions_asked = 0;
         clearContentSection();
         renderQuestion();
-        questions_asked = 0;
     });
 });
 
 
 /*
-if (questions_asked >== 2) {
-                questions_asked++;
-                if (parseInt(selected_choice.attr("id")) === random_question.answer) {
-                    correct_answers++;
-                    console.log("correct answer = " + correct_answers);
-                    winScreen();
-                    setTimeout(renderQuestion, 3000);
-                    
-                }else{
-                    incorrect_answers++;
-                    console.log("incorrect answer = " + incorrect_answers);
-                    loseScreen();
-                    setTimeout(renderQuestion, 3000);
-                }
-            }else{
-                //TODO: Show anwers after done
-                //here will display the correct answers
-                clearContentSection();
-                correct_counter_div.html(correct_answers);
-                incorrect_counter_div.html(incorrect_answers)
-            }
+$(answers_div).on("click", ".questionChoice", function () {
+    selected_choice = $(this);
+
+    questions_asked++;
+    if (parseInt(selected_choice.attr("id")) === random_question.answer) {
+        correct_answers++;
+        winScreen();
+
+    } else {
+        incorrect_answers++;
+        loseScreen();
+    }
+
+    if (questions_asked === 2) {
+        setTimeout(showScoreBoard, 3000);
+        
+    }else{
+        setTimeout(renderQuestion, 3000);
+    }
+});
+
 */
