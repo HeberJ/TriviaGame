@@ -85,6 +85,7 @@ $(document).ready(function () {
     var count = function () {
         time--;
         console.log(time);
+        timer_div.html("Time Remaining: " + time);
         if (time <= 0) {
             stop();
             unanswered_questions++
@@ -98,14 +99,14 @@ $(document).ready(function () {
     //====================================================================================================================
     // Displays the trivia question and answer choices__________________________
     function renderQuestion() {
-        console.log(unanswered_questions + "NOT Answered");
         time = 3;
         start();
         
 
         //clearing the divs for when they have text in them
         clearContentSection();
-
+        //Rendering the timer
+        timer_div.html("Time Remaining: " + time);
         //selects random question from the array
         random_question = question_array[Math.floor(Math.random() * question_array.length)];
         //only shows questions and answers if it is less then the number
@@ -139,7 +140,7 @@ $(document).ready(function () {
     }
 
     // Renders when a player doesnt answer a question___________________________
-    //TODO: Finish the didnt answer screen
+    //TODO: Finish the didnt answer screen::: done?
     function didntAnswer() {
         showCorrectAnswer(random_question.answer);
         congrats_text_div.html("<h3>You Ran out of time! Better luck next time!</h3>")
@@ -199,6 +200,7 @@ $(document).ready(function () {
 
     // Clears the content on the screen_________________________________________
     function clearContentSection() {
+        start_button_div.html("");
         timer_div.html("");
         question_div.html("");
         correct_answer_div.html("");
@@ -228,7 +230,6 @@ $(document).ready(function () {
 
     //Runs once start button has been clicked___________________________________
     $(start_button_div).on("click", "#start", function () {
-        start_button_div.html("");
         renderQuestion();
     });
 
