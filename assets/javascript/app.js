@@ -72,7 +72,7 @@ $(document).ready(function () {
     // Timer
     //====================================================================================================================
     // Sets the time in seconds
-    var time = 3
+    var time = 10
     //starts the timer
     var start = function () {
         countInterval = setInterval(count, 1000);
@@ -99,7 +99,7 @@ $(document).ready(function () {
     //====================================================================================================================
     // Displays the trivia question and answer choices__________________________
     function renderQuestion() {
-        time = 3;
+        time = 10;
         start();
         
 
@@ -110,7 +110,7 @@ $(document).ready(function () {
         //selects random question from the array
         random_question = question_array[Math.floor(Math.random() * question_array.length)];
         //only shows questions and answers if it is less then the number
-        if (questions_asked < 2) {
+        if (questions_asked < 10) {
             question_div.html(question_element.text(random_question.question));
             q0_div.html(random_question.choices[0]);
             q1_div.html(random_question.choices[1]);

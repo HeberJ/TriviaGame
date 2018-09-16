@@ -46,10 +46,9 @@ body {
     background-image: url("../images/bakWhole.jpg");
     background-position: center;
     background-position-y: bottom;
-    background-size: 100%;
     text-shadow: 16px 12px 13px black;
     color: whitesmoke;
-    height: 300px;
+    min-height: 300px;
     padding: 15px;
     filter: drop-shadow(0 0 30px #333);
     box-shadow: 0 0 30px #333;
