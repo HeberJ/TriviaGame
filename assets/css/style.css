@@ -67,11 +67,12 @@ body {
 /* answers display area */
 .questionChoice:hover {
     font-size: 20px;
+    color: #ccaa13;
     text-decoration: underline
 }
 
 .questionChoice:active {
-    color: #ccaa13;
+    color: #658af1;
     font-size: 15px;
 }
 
@@ -88,9 +89,10 @@ body {
 
 #startOverText:hover {
     font-size: 25px;
+    color: #ccaa13;
     text-decoration: underline
 }
 
 #startOverText:active {
-    color: #ccaa13;
+    color: #658af1;
 }
