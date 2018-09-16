@@ -1,24 +1,96 @@
 
+
+body {
+    background-image: url("../images/words.jpg"); 
+}
+
 /* ************************** Heading Style ************************** */
 #resetDiv {
     justify-content: flex-end;
+    padding-bottom: 10px;
+    filter: drop-shadow(0 0 30px #333);
 }
 
-#reset {
-    margin: 25px;
-}
+
 
 #headingDiv {
     justify-content: center;
+    background-image: url("../images/HogwartsEmblem.jpg");
+    background-size: 800px;
+    background-position: center;
+    filter: drop-shadow(0 0 30px #333);
+    box-shadow: 0 0 30px #333;
 }
 
+#headingDiv h1 {
+    font-family: 'Comfortaa', cursive;
+    color: whitesmoke;
+    font-weight: bolder;
+    font-size: 60px;
+    text-shadow: 16px 12px 13px black;
+}
+
+
 /* ************************** Content Section Style ************************** */
+.row {
+    justify-content: center;
+}
+
+.split {
+    margin-left: 10px;
+}
 
 
+#contentSection {
+    font-family: 'Comfortaa', cursive;
+    background-image: url("../images/bakWhole.jpg");
+    background-position: center;
+    background-position-y: bottom;
+    background-size: 100%;
+    text-shadow: 16px 12px 13px black;
+    color: whitesmoke;
+    height: 300px;
+    padding: 15px;
+    filter: drop-shadow(0 0 30px #333);
+    box-shadow: 0 0 30px #333;
+}
 
+/* correct answer div */
+#correctAnswerDiv {
+    color: green;
+}
+
+/* incorrect answer div */
+#incorrectAnswerDiv {
+    color: red;
+}
+
+/* answers display area */
+.questionChoice:hover {
+    font-size: 20px;
+    text-decoration: underline
+}
+
+.questionChoice:active {
+    color: #ccaa13;
+}
+
+/* ************************** Scoreboard Style ************************** */
+
+/* ************************** restart Options ************************** */
 /* Start Button */
 #startDiv {
   justify-content: center;
 }
 
-/* Timer */
+/* startOver Question */
+
+
+#startOverText:hover {
+    font-size: 25px;
+    text-decoration: underline
+}
+
+#startOverText:active {
+    color: #ccaa13;
+}

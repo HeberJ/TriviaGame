@@ -65,7 +65,7 @@ $(document).ready(function () {
     var start_over_text_div = $("#startOverText");
     
     // Creating HTML elements___________________________________________________
-    var start_button = $("<button id='start'>Start</buton>");
+    var start_button = $("<button id='start'>Start</buton>").attr("class", "btn btn-primary");
     var question_element = $("<h3 id='question'>");
     
     //====================================================================================================================

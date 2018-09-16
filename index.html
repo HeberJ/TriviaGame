@@ -12,65 +12,68 @@
     <!-- Bootstrap Link -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
-    <!-- -->
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa|Luckiest+Guy" rel="stylesheet">
+    <!-- Tab Icon -->
+    <link rel="shortcut icon" type="image/png" href="assets/images/Harry Potter -528.png">
 </head>
 
 <body>
-    <figure>
+    <figure id="wholeFig">
         <!-- Layout of Reset and Heading -->
-        <header class="container-fluid">
+        <header class="container">
             <div id="resetDiv" class="row">
                 <button id="reset" class="btn btn-danger">Reset</button>
             </div>
             <div id="headingDiv" class="row jumbotron">
-                <h1>Total Trivia Game</h1>
+                <h1>Harry Potter Trivia</h1>
             </div>
         </header>
 
         <!-- Main Area Layout -->
-        <section id="contentSection" class="container-fluid">
+        <section id="contentSection" class="container rounded">
             <!-- 
             <div id="startDiv" class="row"></div>
             -->
 
-            <div id="timerDiv"></div>
+            <div id="timerDiv" class="row"></div>
 
             <!-- Question and Answer Format -->
             <div id="questionDiv"></div>
             <figure>
-                <div id="correctAnswerDiv"></div>
-                <div id="incorrectAnswerDiv"></div>
+                <div id="correctAnswerDiv" class="row"></div>
+                <div id="incorrectAnswerDiv" class="row"></div>
             </figure>
-            <div id="answers">
-                <div id="0" class="questionChoice"></div>
-                <div id="1" class="questionChoice"></div>
-                <div id="2" class="questionChoice"></div>
-                <div id="3" class="questionChoice"></div>
+            <div id="answers" class="container-fluid">
+                <div id="0" class="questionChoice row"></div>
+                <div id="1" class="questionChoice row"></div>
+                <div id="2" class="questionChoice row"></div>
+                <div id="3" class="questionChoice row"></div>
             </div> 
             
             <!-- Celebration Format -->
-            <div id="congratsText"></div>
-            <div id="congratsDisplay"></div>
+            <div id="congratsText" class="row"></div>
+            <div id="congratsDisplay" class="row"></div>
 
             <!-- Scoreboard format -->
             <figure id="scoreboard" class="container-fluid">
                 <section>
-                    <div id="doneText"></div>
+                    <div id="doneText" class="row"></div>
                 </section>
 
                 <section class="row">
                     <div id="answersCorrectText"></div>
-                    <div id="correctCounter"></div>
+                    <div id="correctCounter" class="split"></div>
                 </section>
 
                 <section class="row">
                     <div id="answersIncorrectText"></div>
-                    <div id="incorrectCounter"></div>
+                    <div id="incorrectCounter" class="split"></div>
                 </section>
 
                 <section class="row">
                     <div id="unansweredText"></div>
-                    <div id="unansweredCounter"></div>
+                    <div id="unansweredCounter" class="split"></div>
                 </section>
             </figure>
             <figure class="container-fluid">
