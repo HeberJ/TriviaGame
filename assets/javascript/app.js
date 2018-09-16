@@ -7,20 +7,100 @@ $(document).ready(function () {
     //====================================================================================================================
     var question_array = [
         {
-            question: "Which actor played the fictional character Dr. Emmett Brown in the Back to the Future trilogy?",
-            choices: ["Crispn Glover", "Thomas F. Wilson", "Christopher Lloyd", "Michael J.Fox"],
-            answer: 2
+            question: "What is the symbol for Slytherin house?",
+            choices: ["A Lion", "An Eagle", "A badger", "A Snake"],
+            answer: 3
         },
         {
-            question: "The song “Eye of the Tiger” by the band Survivor was the theme song for what movie released in 1982?",
-            choices: ["Rocky III", "Rocky I", "Raiders of the Lost Ark", "Tops Gun"],
+            question: "Who is Ginny's first boyfriend?",
+            choices: ["Michael Corner", "Dean Thomas", "Harry Potter", "Zacharias Smith"],
             answer: 0
         },
         {
             question: "In the Harry Potter series, what is the name of Harry’s pet owl?",
             choices: ["Soren", "Pigwidgeon", "Owl", "Hedwig"],
             answer: 3
-        }
+        },
+        {
+            question: "In Harry Potter and the Philosopher's Stone which Gringotts vault was the Philosopher's Stone kept in?",
+            choices: ["703", "504", "713", "217"],
+            answer: 2
+        },
+        {
+            question: "Whose mother was Rowena Ravenclaw?",
+            choices: ["Moaning Myrtle", "Lily Potter", "The Fat Lady", "The Grey Lady"],
+            answer: 3
+        },
+        {
+            question: "How much do Fred and George Weasley bet on the Quidditch World Cup?",
+            choices: ["37 Galleons, 15 Sickles and 3 Knuts", "37 Galleons, 3 Sickles and 3 Knuts", "15 Galleons, 37 Sickles and 8 Knuts", "3 Galleons, 15 Sickles and 37 Knuts"],
+            answer: 0
+        },
+        {
+            question: "How many points is the Golden Snitch worth?",
+            choices: ["150", "500", "100", "50"],
+            answer: 0
+        },
+        {
+            question: "How many goal posts are there on a Quidditch pitch?",
+            choices: ["3", "6", "8", "2"],
+            answer: 1
+        },
+        {
+            question: "Who tells Harry and Ron that people can be a ‘bit stupid' about their pets?",
+            choices: ["Professor Dumbledore", "Hermione", "Professor Lupin", "Hagrid"],
+            answer: 3
+        },
+        {
+            question: "What is the symbol for Ravenclaw",
+            choices: ["A Lion", "An Eagle", "A badger", "A Snake"],
+            answer: 1
+        },
+        {
+            question: "How did Harry's parents die according to the Dursleys?",
+            choices: ["They were both sick", "Lost at sea", "Car crash", "Murderderd"],
+            answer: 2
+        },
+        {
+            question: "What is the name of the fountain inside the Ministry of Magic?",
+            choices: ["Fountain of Fair Fortune", "Fountain of Magical Brethern", "Fountain of Eros", "Magic Might"],
+            answer: 1
+        },
+        {
+            question: "How much does a twelve-week course of Apparition lessons cost?",
+            choices: ["12 Galleons", "3 Galleons", "17 Galleons", "It's Free"],
+            answer: 0
+        },
+        {
+            question: "What is the only antidote to Basilisk venom?",
+            choices: ["Pheonix Tears", "Dragon's Blood", "a Bezoar", "Mandrake Draught"],
+            answer: 0
+        },
+        {
+            question: "When is Harry Potter's birthday?",
+            choices: ["August 31", "July 31", "October 31", "September 31"],
+            answer: 1
+        },
+        {
+            question: "What was Tom Riddle's mother's maiden name?",
+            choices: ["Riddle", "Clearwater", "Peverell", "Gaunt"],
+            answer: 3
+        },
+        {
+            question: "How many staircases does Hogwarts have?",
+            choices: ["356", "258", "142", "109"],
+            answer: 2
+        },
+        {
+            question: "How many possible Quidditch fouls are there?",
+            choices: ["50", "200", "450", "700"],
+            answer: 3
+        },
+        {
+            question: "What is the max speed for a Firebolt broomstick?",
+            choices: ["150mph", "200mph", "250mph", "300mph"],
+            answer: 0
+        },
     ];
 
     //====================================================================================================================
@@ -63,11 +143,11 @@ $(document).ready(function () {
     var unanswered_text_div = $("#unansweredText");
     var unanswered_counter_div = $("#unansweredCounter");
     var start_over_text_div = $("#startOverText");
-    
+
     // Creating HTML elements___________________________________________________
     var start_button = $("<button id='start'>Start</buton>").attr("class", "btn btn-primary");
     var question_element = $("<h3 id='question'>");
-    
+
     //====================================================================================================================
     // Timer
     //====================================================================================================================
@@ -91,7 +171,7 @@ $(document).ready(function () {
             unanswered_questions++
             didntAnswer();
         }
-    } 
+    }
 
 
     //====================================================================================================================
@@ -101,7 +181,7 @@ $(document).ready(function () {
     function renderQuestion() {
         time = 10;
         start();
-        
+
 
         //clearing the divs for when they have text in them
         clearContentSection();
@@ -122,7 +202,7 @@ $(document).ready(function () {
         }
         // increments how many questions have been asked
         questions_asked++;
-    
+
     }
 
     // Renders this screen if player answers the question correctly_____________
@@ -147,11 +227,11 @@ $(document).ready(function () {
         setTimeout(renderQuestion, 3000);
     }
 
-    // Clears all the wrong answers and only shows the correct answer___________ 
+    // Clears all the wrong answers and only shows the correct answer___________
     function showCorrectAnswer(right_answer) {
         switch (right_answer) {
             case 0:
-                correct_answer_div.html("" + random_question.choices[0]);
+                correct_answer_div.html("Correct answer: " + random_question.choices[0]);
                 q0_div.html("");
                 q1_div.html("");
                 q2_div.html("");
@@ -159,7 +239,7 @@ $(document).ready(function () {
                 break;
 
             case 1:
-                correct_answer_div.html("" + random_question.choices[1]);
+                correct_answer_div.html("Correct answer: " + random_question.choices[1]);
                 q0_div.html("");
                 q1_div.html("");
                 q2_div.html("");
@@ -167,7 +247,7 @@ $(document).ready(function () {
                 break;
 
             case 2:
-                correct_answer_div.html("" + random_question.choices[2]);
+                correct_answer_div.html("Correct answer: " + random_question.choices[2]);
                 q0_div.html("");
                 q1_div.html("");
                 q2_div.html("");
@@ -175,7 +255,7 @@ $(document).ready(function () {
                 break;
 
             case 3:
-                correct_answer_div.html("" + random_question.choices[3]);
+                correct_answer_div.html("Correct answer: " + random_question.choices[3]);
                 q0_div.html("");
                 q1_div.html("");
                 q2_div.html("");
@@ -264,4 +344,3 @@ $(document).ready(function () {
         renderQuestion();
     });
 });
-

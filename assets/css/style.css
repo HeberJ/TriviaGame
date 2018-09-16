@@ -1,7 +1,7 @@
 
 
 body {
-    background-image: url("../images/words.jpg"); 
+    background-image: url("../images/words.jpg");
 }
 
 /* ************************** Heading Style ************************** */
@@ -72,6 +72,7 @@ body {
 
 .questionChoice:active {
     color: #ccaa13;
+    font-size: 15px;
 }
 
 /* ************************** Scoreboard Style ************************** */
